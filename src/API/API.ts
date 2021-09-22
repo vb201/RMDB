@@ -9,6 +9,7 @@ import {
   REQUEST_TOKEN_URL,
   LOGIN_URL,
   SESSION_ID_URL,
+  TRENDING_ALL_WEEK_BASE_URL,
 } from "./config";
 
 const defaultConfig = {
@@ -36,6 +37,20 @@ export type Movie = {
   revenue: number;
 };
 
+export type Banners = {
+  page: number;
+  results: Banner[];
+  total_pages: number;
+  total_results: number;
+};
+
+export type Banner = {
+  backdrop_path: string;
+  id: number;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+};
 export type TV = {
   backdrop_path: string;
   // genre_ids: number[];
@@ -103,10 +118,14 @@ const apiSettings = {
       : `${POPULAR_MOVIE_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchTVs: async (searchTerm: string, page: number): Promise<TV> => {
+  fetchTVs: async (searchTerm: string, page: number): Promise<TVs> => {
     const endpoint: string = searchTerm
       ? `${SEARCH_TV_BASE_URL}${searchTerm}&page=${page}`
       : `${POPULAR_TV_BASE_URL}&page=${page}`;
+    return await (await fetch(endpoint)).json();
+  },
+  fetchTrendingThisWeek: async (page: number): Promise<Banners> => {
+    const endpoint: string = `${TRENDING_ALL_WEEK_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
   // Fix

@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <div>
       <LogoContainer>
-        <LogoText>React Movie</LogoText>
+        <LogoText>RMDB</LogoText>
       </LogoContainer>
     </div>
   )

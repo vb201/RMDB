@@ -3,16 +3,18 @@ import tw from "twin.macro";
 
 export const Wrapper = styled.div`
   height: 100px;
-  min-width: 350px;
-  ${tw`flex items-center pr-5 bg-gray-800`}
+  width: 400px;
+  ${tw`flex items-center px-5 bg-gray-800`}
   /* background: var(--darkGrey); */
 
   @media (max-width: 768px) {
     height: 80px;
+    min-width: 300px;
   }
 
   @media (max-width: 576px) {
     height: 65px;
+    min-width: 250px;
   }
 `;
 
