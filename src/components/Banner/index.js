@@ -17,10 +17,14 @@ import {
 const BannerContainer = ({ bannerData }) => {
   // console.log(bannerData);
   // const [bannerItems, setBannerItems] = useState({});
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [currentBanner, setCurrentBanner] = useState(0);
 
-  // if (loading) return <Spinner />;
+  useEffect(() => {
+    setLoading(true);
+    setLoading(false);
+  }, [bannerData]);
+  if (loading) return <Spinner />;
 
   const truncate = (string, n) => {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;

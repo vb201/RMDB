@@ -33,7 +33,7 @@ const HomePage = () => {
       <Navbar>
         <SeachBar setSearchTerm={setSearchTerm} />
       </Navbar>
-      <Banner bannerData={sliced} />
+      {loading !== true && <Banner bannerData={sliced} />}
     </PageContainer>
   );
 };
