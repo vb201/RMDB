@@ -8,7 +8,7 @@ import { checkExistingState } from "../helpers";
 
 const initialState = {
   page: 0,
-  results: [] as Banner[],
+  results: [],
   total_pages: 0,
   total_results: 0,
 };
@@ -26,13 +26,14 @@ export const useHomeFetch = () => {
   const [error, setError] = useState(false);
   const [LoadingMore, setLoadingMore] = useState(false);
 
-  const fetch = async (page: number, searchTerm = "") => {
+  const fetch = async (page, searchTerm = "") => {
     try {
       setError(false);
       setLoading(true);
       // console.log(await API.fetchMovies(searchTerm, page));
 
       const banner = await API.fetchTrendingThisWeek(page);
+
       // const check = await API.fetchTVs(searchTerm, page);
       // setTempstate(check);
       setBannerState((prev) => ({
@@ -40,6 +41,7 @@ export const useHomeFetch = () => {
         results:
           page > 1 ? [...prev.results, ...banner.results] : [...banner.results],
       }));
+      console.log(banner);
     } catch (error) {
       setError(true);
     }

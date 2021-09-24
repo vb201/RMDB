@@ -1,5 +1,5 @@
-import React from 'react'
-import { LogoContainer, LogoText } from './styles'
+import React from "react";
+import { LogoContainer, LogoText } from "./styles";
 
 const Logo = () => {
   return (
@@ -8,7 +8,7 @@ const Logo = () => {
         <LogoText>RMDB</LogoText>
       </LogoContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

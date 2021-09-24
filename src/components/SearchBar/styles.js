@@ -4,7 +4,7 @@ import tw from "twin.macro";
 export const Wrapper = styled.div`
   height: 100px;
   width: 400px;
-  ${tw`flex items-center px-5 bg-gray-800`}
+  ${tw`flex items-center px-5 `}
   /* background: var(--darkGrey); */
 
   @media (max-width: 768px) {

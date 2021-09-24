@@ -6,5 +6,5 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoText = styled.div`
-  ${tw`m-1 text-4xl font-bold  color[white]`};
+  ${tw`m-1 text-3xl sm:text-4xl font-bold  color[white]`};
 `;
