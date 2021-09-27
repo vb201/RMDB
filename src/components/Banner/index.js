@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { isCompositeComponent } from "react-dom/test-utils";
+import API from "../../API-V2";
+
 import Spinner from "../Spinner";
 
+import { useContentFetch } from "../../hooks/useContentFetch";
 // import { Banner } from "../../API/API";
 import {
   Button,
@@ -14,17 +16,38 @@ import {
 } from "./styles";
 
 // type TestState = {bannerDataBanner}
-const BannerContainer = ({ bannerData }) => {
-  // console.log(bannerData);
-  // const [bannerItems, setBannerItems] = useState({});
-  const [loading, setLoading] = useState(true);
+const BannerContainer = () => {
+  const { contentState, loading, error } = useContentFetch(
+    API.fetchTrendingThisWeek(),
+    "HomeBanner"
+  );
+  var DataLength = 7;
+  var sliced = [];
+  for (var i = 0; i < DataLength; i++) sliced[i] = contentState.results[i];
+  if (loading) return <Spinner />;
+  return (
+    <>
+      {contentState.page > 0 && (
+        <BannerContainerChild bannerData={sliced} DataLength={DataLength} />
+      )}
+    </>
+  );
+};
+const BannerContainerChild = ({ bannerData, DataLength }) => {
   const [currentBanner, setCurrentBanner] = useState(0);
 
   useEffect(() => {
-    setLoading(true);
-    setLoading(false);
-  }, [bannerData]);
-  if (loading) return <Spinner />;
+    // setLoading(true);
+    const timer = setInterval(() => {
+      setCurrentBanner(
+        currentBanner === DataLength - 1 ? 0 : currentBanner + 1
+      );
+    }, 10000);
+    // setLoading(false);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [DataLength, currentBanner]);
 
   const truncate = (string, n) => {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
@@ -50,13 +73,13 @@ const BannerContainer = ({ bannerData }) => {
         <Button>More Info</Button>
         {/* Truncate OverView */}
 
-        <Text>{truncate(bannerData[currentBanner]?.overview, 200)}</Text>
+        <Text>{truncate(bannerData[currentBanner]?.overview, 150)}</Text>
         <DotsWrapper>
-          {Array.from({ length: 5 }).map((item, index) =>
+          {Array.from({ length: DataLength }).map((item, index) =>
             currentBanner === index ? (
-              <Dots active onClick={() => ChangeBanner(index)} />
+              <Dots key={index} active onClick={() => ChangeBanner(index)} />
             ) : (
-              <Dots onClick={() => ChangeBanner(index)} />
+              <Dots key={index} onClick={() => ChangeBanner(index)} />
             )
           )}
         </DotsWrapper>

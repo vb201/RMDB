@@ -7,7 +7,7 @@ export const Wapper = styled.div`
   ${tw`w-full bg-cover // opacity-20 justify-items-end`};
   background: ${({ backdrop }) =>
     backdrop
-      ? `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})`
+      ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)), url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})`
       : "#000"};
   background-position: center;
 
@@ -23,12 +23,12 @@ export const Wapper = styled.div`
       opacity: 1;
     }
   }
-  height: 30rem;
+  height: 384px;
   @media (min-width: 768px) {
-    height: 35rem;
+    height: 435px;
   }
   @media (min-width: 1024px) {
-    height: 40rem;
+    height: 493px;
   }
 `;
 
@@ -45,7 +45,7 @@ export const Contents = styled.div`
   lg:pt-52
   `};
   @media (max-width: 640px) {
-    padding-top: 5rem;
+    padding-top: 72px;
   }
 `;
 
@@ -54,12 +54,12 @@ export const Heading = styled.h1`
 `;
 
 export const Button = styled.button`
-  ${tw`my-5 py-2 cursor-pointer color[azure] outline-none border-0 font-bold border-radius[0.2vh] px-8 background-clip[rgba(51,51,51,0.5)]
-  hover:color[black] hover:background-color[aliceblue] hover:transition-all`};
+  ${tw`my-5 py-2 cursor-pointer text-white outline-none border-0 font-bold border-radius[0.2vh] px-8 background-clip[rgba(51,51,51,0.5)]
+  hover:color[black] hover:bg-white hover:transition-all`};
 `;
 export const Text = styled.div`
   width: 90%;
-  max-width: 45rem;
+  max-width: 560px;
   ${tw`font-serif text-xl font-medium sm:text-2xl `};
 `;
 
@@ -69,18 +69,25 @@ export const DotsWrapper = styled.div`
   ${tw`
   flex position[absolute] 
     `};
-  padding-top: 330px;
+  padding-top: 268px;
+  /* @media (min-width: 640px) {
+    padding-top: 2px;
+  } */
   @media (min-width: 768px) {
-    padding-top: 340px;
+    padding-top: 258px;
   }
   @media (min-width: 1024px) {
-    padding-top: 340px;
+    padding-top: 240px;
   }
 `;
 export const Dots = styled.div`
   ${tw`
     w-5 h-5 border-radius[50%] mx-1 my-1 background-color[#f1f1f1]
   `};
+
+  @media (max-width: 400px) {
+    ${tw`w-4 h-4 my-1`}
+  }
   /* &.${(props) => props.active} {
     background: rgb(32, 32, 32);
   } */

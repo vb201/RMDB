@@ -9,23 +9,29 @@ const API_URL = "https://api.themoviedb.org/3/";
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 // For search
-const SEARCH_MOVIE_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=`;
-const SEARCH_TV_BASE_URL = `${API_URL}search/tv?api_key=${API_KEY}&language=en-US&query=`;
-const SEARCH_MULTI_BASE_URL = `${API_URL}search/multi?api_key=${API_KEY}&language=en-US&query=`;
+const SEARCH_MOVIE_BASE_URL = `search/movie?api_key=${API_KEY}&language=en-US&query=`;
+const SEARCH_TV_BASE_URL = `search/tv?api_key=${API_KEY}&language=en-US&query=`;
+const SEARCH_MULTI_BASE_URL = `search/multi?api_key=${API_KEY}&language=en-US&query=`;
 
 // For popular
-const POPULAR_MOVIE_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US`;
-const POPULAR_TV_BASE_URL = `${API_URL}tv/popular?api_key=${API_KEY}&language=en-US`;
+const POPULAR_MOVIE_BASE_URL = `movie/popular?api_key=${API_KEY}&language=en-US`;
+const POPULAR_TV_BASE_URL = `tv/popular?api_key=${API_KEY}&language=en-US`;
 
 // For Trending
-const TRENDING_ALL_WEEK_BASE_URL = `${API_URL}trending/all/week?api_key=${API_KEY}`;
+const TRENDING_ALL_WEEK_BASE_URL = `trending/all/week?api_key=${API_KEY}`;
 
 // For In Theatres
-const IN_THEATRES_BASE_URL = `${API_URL}movie/now_playing?api_key=${API_KEY}`;
+const IN_THEATRES_BASE_URL = `movie/now_playing?api_key=${API_KEY}`;
+
+// Watch Providers
+const WATCH_PROVIDER_BASE_URL = `watch/providers/movie?api_key=${API_KEY}`;
+const MOVIE_FROM_WATCH_PROVIDER_BASE_URL = `discover/movie?api_key=${API_KEY}`;
+const TV_FROM_WATCH_PROVIDER_BASE_URL = `discover/tv?api_key=${API_KEY}`;
+
 // For login and voting
-const REQUEST_TOKEN_URL = `${API_URL}authentication/token/new?api_key=${API_KEY}`;
-const LOGIN_URL = `${API_URL}authentication/token/validate_with_login?api_key=${API_KEY}`;
-const SESSION_ID_URL = `${API_URL}authentication/session/new?api_key=${API_KEY}`;
+const REQUEST_TOKEN_URL = `authentication/token/new?api_key=${API_KEY}`;
+const LOGIN_URL = `authentication/token/validate_with_login?api_key=${API_KEY}`;
+const SESSION_ID_URL = `authentication/session/new?api_key=${API_KEY}`;
 
 const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 // Sizes: w300, w780, w1280, original
@@ -43,6 +49,9 @@ export {
   POPULAR_TV_BASE_URL,
   TRENDING_ALL_WEEK_BASE_URL,
   IN_THEATRES_BASE_URL,
+  WATCH_PROVIDER_BASE_URL,
+  MOVIE_FROM_WATCH_PROVIDER_BASE_URL,
+  TV_FROM_WATCH_PROVIDER_BASE_URL,
   API_URL,
   API_KEY,
   IMAGE_BASE_URL,

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // Api
-import API, { Banner } from "../API/API";
+import API, { Banner } from "../API";
 
 // Helpers
 import { checkExistingState } from "../helpers";
@@ -42,6 +42,7 @@ export const useHomeFetch = () => {
           page > 1 ? [...prev.results, ...banner.results] : [...banner.results],
       }));
       console.log(banner);
+      // console.log(banner);
     } catch (error) {
       setError(true);
     }
@@ -89,3 +90,15 @@ export const useHomeFetch = () => {
     setLoadingMore,
   };
 };
+
+// const fetch = async () => {
+//     const request = await axios.get(fetchURL);
+
+//     const { data } = request;
+
+//     console.log(data);
+//     setContent((prev) => ({ ...data }));
+//     console.log(content);
+
+//     return data;
+//   };

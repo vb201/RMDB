@@ -1,15 +1,16 @@
 import {
   SEARCH_MOVIE_BASE_URL,
-  POPULAR_MOVIE_BASE_URL,
   SEARCH_TV_BASE_URL,
-  POPULAR_TV_BASE_URL,
   SEARCH_MULTI_BASE_URL,
+  POPULAR_MOVIE_BASE_URL,
+  POPULAR_TV_BASE_URL,
+  TRENDING_ALL_WEEK_BASE_URL,
+  IN_THEATRES_BASE_URL,
   API_URL,
   API_KEY,
   REQUEST_TOKEN_URL,
   LOGIN_URL,
   SESSION_ID_URL,
-  TRENDING_ALL_WEEK_BASE_URL,
 } from "./config";
 
 const defaultConfig = {
@@ -18,99 +19,6 @@ const defaultConfig = {
     "Content-Type": "application/json",
   },
 };
-
-// // Types
-
-// export type Movie = {
-//   backdrop_path: string,
-//   // genre_ids: number[];
-//   id: number,
-//   original_title: string,
-//   overview: string,
-//   popularity: number,
-//   poster_path: string,
-//   title: string,
-//   vote_average: number,
-//   vote_count: number,
-//   runtime: number,
-//   budget: number,
-//   revenue: number,
-// };
-
-// export type Banners = {
-//   page: number,
-//   results: Banner[],
-//   total_pages: number,
-//   total_results: number,
-// };
-
-// export type Banner = {
-//   backdrop_path: string,
-//   id: number,
-//   overview: string,
-//   popularity: number,
-//   poster_path: string,
-// };
-// export type TV = {
-//   backdrop_path: string,
-//   // genre_ids: number[];
-//   id: number,
-//   original_name: string,
-//   overview: string,
-//   popularity: number,
-//   poster_path: string,
-//   vote_average: number,
-//   vote_count: number,
-// };
-
-// export type Movies = {
-//   page: number,
-//   results: Movie[],
-//   total_pages: number,
-//   total_results: number,
-// };
-
-// export type TVs = {
-//   page: number,
-//   results: TV[],
-//   total_pages: number,
-//   total_results: number,
-// };
-
-// export type Cast = {
-//   character: string,
-//   credit_id: string,
-//   name: string,
-//   profile_path: string,
-// };
-
-// export type Crew = {
-//   job: string,
-//   name: string,
-//   credit_id: number,
-// };
-// export type Credits = {
-//   id: number,
-//   cast: Cast[],
-//   crew: Crew[],
-// };
-// // export type MovieVideo ={
-
-// // }
-// export type MovieVideo = {
-//   id: number,
-//   results: [
-//     {
-//       name: string,
-//       key: string,
-//       site: string,
-//       // maybe
-//       // size:string;
-//       type: string,
-//       official: boolean,
-//     }
-//   ],
-// };
 
 const apiSettings = {
   fetchMovies: async (searchTerm, page) => {
@@ -125,10 +33,15 @@ const apiSettings = {
       : `${POPULAR_TV_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
-  fetchTrendingThisWeek: async (page) => {
+  fetchTrendingThisWeek: async (page = 1) => {
     const endpoint = `${TRENDING_ALL_WEEK_BASE_URL}&page=${page}`;
     return await (await fetch(endpoint)).json();
   },
+  fetchInTheatres: async (page = 1, region = "US") => {
+    const endpoint = `${IN_THEATRES_BASE_URL}&page=${page}&region=${region}`;
+    return await (await fetch(endpoint)).json();
+  },
+
   // Fix
   fetchAll: async (searchTerm, page) => {
     const endpoint = searchTerm
