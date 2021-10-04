@@ -37,7 +37,7 @@ const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 // Sizes: w300, w780, w1280, original
 const BACKDROP_SIZE = "original";
 // w92, w154, w185, w342, w500, w780, original
-const POSTER_SIZE = "original";
+const POSTER_SIZE = "w342";
 // http://image.tmdb.org/t/p/w1280//gFZriCkpJYsApPZEF3jhxL4yLzG.jpg
 // url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})
 

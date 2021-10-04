@@ -4,12 +4,12 @@ import RowItems from "../Row/RowItems";
 import Spinner from "../Spinner";
 import { Content } from "./styles";
 
-const Row = ({ id, watchProviderName }) => {
+const WatchProviderRow = ({ id, watchProviderName }) => {
   const { contentState, loading, error, fetch } = useWatchProviderFetch(
     id,
     watchProviderName
   );
-  console.log(contentState);
+  // console.log(contentState);
   if (loading) return <Spinner />;
   return (
     // <div>
@@ -24,4 +24,4 @@ const Row = ({ id, watchProviderName }) => {
   );
 };
 
-export default Row;
+export default WatchProviderRow;

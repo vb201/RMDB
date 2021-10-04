@@ -9,7 +9,7 @@ export const Title = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  ${tw`flex `};
+  ${tw`m-1 `};
 `;
 export const Button = styled.button`
   ${tw`my-3 py-1 cursor-pointer  outline-none border-0 font-bold border-radius[0.2vh] px-4 

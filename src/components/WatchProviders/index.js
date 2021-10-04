@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import API from "../../API-V2";
 import { useContentFetch } from "../../hooks/useContentFetch";
-import Row from "./Row";
+import WatchProviderRow from "./Row";
 import Spinner from "../Spinner";
 import { Button, ButtonContainer, Title, Wrapper } from "./styles";
 
@@ -15,7 +15,18 @@ const WatchProviders = () => {
   var DataLength = 10;
   if (Object.keys(contentState.results).length > DataLength - 1) {
     var sliced = [];
-    for (var i = 0; i < DataLength; i++) sliced[i] = contentState.results[i];
+    for (var i = 0, index = 0; index < DataLength; i++) {
+      if (
+        (contentState.results[i].provider_id === 9) |
+        (contentState.results[i].provider_id === 377)
+      ) {
+        // i = i - 1;
+        continue;
+      } else {
+        sliced[index] = contentState.results[i];
+        index++;
+      }
+    }
   }
   if (loading) return <Spinner />;
   return (
@@ -74,7 +85,7 @@ const WatchProvidersChild = ({ WatchProvidersData }) => {
       </ButtonContainer>
       {/* <Button>{currentWatchProviderIndex}</Button>
       <Button>{currentWatchProviderName}</Button> */}
-      <Row
+      <WatchProviderRow
         id={currentWatchProviderID}
         watchProviderName={currentWatchProviderName}
       />

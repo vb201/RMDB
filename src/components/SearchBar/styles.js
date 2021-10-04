@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   height: 100px;
   width: 400px;
   ${tw`flex items-center px-5 `}
-  /* background: var(--darkGrey); */
 
   @media (max-width: 768px) {
     height: 80px;
@@ -24,7 +23,7 @@ export const Content = styled.div`
     relative
     w-full
     // min-w-min
-    bg-gray-500
+    bg-medGrey
     rounded-2xl
     mr-auto
     color[white]

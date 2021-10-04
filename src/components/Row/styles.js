@@ -6,22 +6,24 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
-  ${tw`text-4xl font-bold text-white px-5 py-3 sm:px-16 md:px-20`};
+  ${tw`px-5 py-3 text-4xl font-bold text-white sm:px-16 md:px-20`};
 `;
 
 export const ContentWrapper = styled.div`
-  ${tw``};
+  ${tw`overflow-hidden`};
 `;
 export const Content = styled.div`
-  ${tw`flex overflow-y-hidden p-3 md:p-4 lg:p-5`};
-  /* @media (min-width: 640px) {
-    padding-top: 2px;
-  } */
+  ${tw`flex p-3 overflow-x-scroll md:p-4 lg:p-5`};
+`;
+
+export const ContentItem = styled.div`
+  ${tw`px-2 min-w-max`};
 `;
 export const ContentImage = styled.img`
+  ${tw`object-contain w-full p-2 transition-transform duration-500 max-h-80 rounded-2xl`};
+  /* height: 20rem;
+  width: 13.34rem; */
   &:hover {
     transform: scale(1.1);
   }
-  ${tw` w-full
-  object-contain p-1 max-h-64 transition-transform duration-500`};
 `;

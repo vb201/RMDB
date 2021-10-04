@@ -14,17 +14,7 @@ const Row = ({ title, name, fetchURL }) => {
       <Title>{title}</Title>
       <ContentWrapper>
         <Content>
-          {/* {contentState.results.map((content, index) => (
-            <> */}
-          {/* <Title></Title> */}
-          {/* <ContentImage
-                key={index}
-                src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${content.poster_path}`}
-                alt=""
-              /> */}
           <RowItems contents={contentState.results} />
-          {/* </> */}
-          {/* ))} */}
         </Content>
       </ContentWrapper>
     </Wrapper>

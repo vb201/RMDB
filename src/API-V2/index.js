@@ -54,11 +54,15 @@ const API = {
     return endpoint;
   },
   fetchMovieVideo: (movieId) => {
-    const endpoint = `${API_URL}movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`;
+    const endpoint = `movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`;
     return endpoint;
   },
   fetchMovie: (movieId) => {
-    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
+    const endpoint = `movie/${movieId}?api_key=${API_KEY}`;
+    return endpoint;
+  },
+  fetchTV: (tvId) => {
+    const endpoint = `tv/${tvId}?api_key=${API_KEY}`;
     return endpoint;
   },
   fetchCredits: (movieId) => {

@@ -4,7 +4,7 @@ import tw from "twin.macro";
 export const NavbarContainer = styled.div`
   /* max-height: 100px; */
   height: 100px;
-  ${tw`flex flex-row items-center justify-between  w-full  px-5 bg-gray-800 sm:px-16 md:px-20`}
+  ${tw`flex flex-row items-center justify-between  w-full  px-5 bg-black sm:px-16 md:px-20`}
 
   @media (max-width: 400px) {
     height: 75px;

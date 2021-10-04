@@ -37,7 +37,6 @@ export const useContentFetch = (fetchURL, sessionName) => {
       setContentState(sessionState);
       return;
     } else {
-      setContentState(initialState);
       console.log("fetching");
       fetch();
       // sessionStorage.setItem(sessionName, JSON.stringify(contentState));

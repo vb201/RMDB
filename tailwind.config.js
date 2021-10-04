@@ -18,7 +18,17 @@ module.exports = {
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
     },
-    extend: {},
+
+    extend: {
+      colors: {
+        // Configure your color palette here
+        lightGrey: "#eee",
+        medGrey: "#353535",
+        darkGrey: "#1c1c1c",
+        black: "#000",
+        white: "#fff",
+      },
+    },
   },
   variants: {
     extend: {},

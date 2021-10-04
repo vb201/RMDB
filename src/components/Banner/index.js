@@ -14,6 +14,7 @@ import {
   Text,
   Wapper,
 } from "./styles";
+import { Link } from "react-router-dom";
 
 // type TestState = {bannerDataBanner}
 const BannerContainer = () => {
@@ -66,11 +67,21 @@ const BannerContainerChild = ({ bannerData, DataLength }) => {
       <Contents>
         <Heading>
           {bannerData[currentBanner]?.title ||
-            bannerData[currentBanner]?.orignal_title ||
             bannerData[currentBanner]?.name ||
+            bannerData[currentBanner]?.orignal_title ||
             bannerData[currentBanner]?.original_name}
         </Heading>
-        <Button>More Info</Button>
+
+        <Link
+          to={
+            bannerData[currentBanner]?.title ||
+            bannerData[currentBanner]?.orignal_title
+              ? `/movie/${bannerData[currentBanner].id}`
+              : `/tv/${bannerData[currentBanner].id}`
+          }
+        >
+          <Button>More Info</Button>
+        </Link>
         {/* Truncate OverView */}
 
         <Text>{truncate(bannerData[currentBanner]?.overview, 150)}</Text>
