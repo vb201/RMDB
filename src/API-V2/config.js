@@ -38,6 +38,8 @@ const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 const BACKDROP_SIZE = "original";
 // w92, w154, w185, w342, w500, w780, original
 const POSTER_SIZE = "w342";
+const BIG_POSTER_SIZE = "w500";
+
 // http://image.tmdb.org/t/p/w1280//gFZriCkpJYsApPZEF3jhxL4yLzG.jpg
 // url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})
 
@@ -57,6 +59,7 @@ export {
   IMAGE_BASE_URL,
   BACKDROP_SIZE,
   POSTER_SIZE,
+  BIG_POSTER_SIZE,
   REQUEST_TOKEN_URL,
   LOGIN_URL,
   SESSION_ID_URL,

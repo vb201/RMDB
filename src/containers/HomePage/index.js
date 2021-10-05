@@ -8,7 +8,6 @@ import { useHomeFetch } from "../../hooks/useHomeFetch";
 import { PageContainer } from "./styles";
 
 import API from "../../API-V2/";
-import TEST from "../../components/TEST";
 import WatchProvider from "../../components/WatchProviders";
 
 const HomePage = () => {

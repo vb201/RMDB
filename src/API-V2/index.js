@@ -9,7 +9,6 @@ import {
   WATCH_PROVIDER_BASE_URL,
   MOVIE_FROM_WATCH_PROVIDER_BASE_URL,
   TV_FROM_WATCH_PROVIDER_BASE_URL,
-  API_URL,
   API_KEY,
 } from "./config";
 
@@ -65,9 +64,21 @@ const API = {
     const endpoint = `tv/${tvId}?api_key=${API_KEY}`;
     return endpoint;
   },
-  fetchCredits: (movieId) => {
-    const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
-    return creditsEndpoint;
+  fetchMovieCredits: (movieId) => {
+    const endpoint = `movie/${movieId}/credits?api_key=${API_KEY}`;
+    return endpoint;
+  },
+  fetchTVCredits: (tvId) => {
+    const endpoint = `tv/${tvId}/credits?api_key=${API_KEY}`;
+    return endpoint;
+  },
+  fetchSimilarMovie: (movieId) => {
+    const endpoint = `movie/${movieId}/similar?api_key=${API_KEY}`;
+    return endpoint;
+  },
+  fetchSimilarTV: (tvId) => {
+    const endpoint = `tv/${tvId}/similar?api_key=${API_KEY}`;
+    return endpoint;
   },
 };
 

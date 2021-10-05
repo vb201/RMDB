@@ -4,44 +4,57 @@ import API from "../../API-V2";
 import Breadcrumb from "../../components/Breadcrumb";
 import ContentInfo from "../../components/ContentInfo";
 import Navbar from "../../components/Navbar";
+import Row from "../../components/Row";
 import Spinner from "../../components/Spinner";
-import { useContentFetch } from "../../hooks/useContentFetch";
+import { useContentFetchWithCredits } from "../../hooks/useContentFetchWithCredits";
 import { PageContainer } from "./style";
 
 const ContentPage = () => {
   const { contentType, contentID } = useParams();
 
-  var fetch;
+  var contentFetch, creditFetch, similarFetch;
   if (contentType === "movie") {
-    fetch = API.fetchMovie(contentID);
+    contentFetch = API.fetchMovie(contentID);
+    creditFetch = API.fetchMovieCredits(contentID);
+    similarFetch = API.fetchSimilarMovie(contentID);
   } else if (contentType === "tv") {
-    fetch = API.fetchTV(contentID);
+    contentFetch = API.fetchTV(contentID);
+    creditFetch = API.fetchTVCredits(contentID);
+    similarFetch = API.fetchSimilarTV(contentID);
   }
 
-  const { contentState, loading, error } = useContentFetch(
-    fetch,
-    `${contentID}`
+  const { contentState, loading, error } = useContentFetchWithCredits(
+    contentFetch,
+    creditFetch,
+    contentID
   );
-  console.log(contentState);
+  console.log(Object.keys(contentState).length > 3);
   if (loading) return <Spinner />;
 
-  return (
-    <PageContainer>
-      <Navbar />
-      {/* <div>asdasdasd</div>
-       */}
-      <Breadcrumb
-        contentTitle={
-          contentState?.title ||
-          contentState?.name ||
-          contentState?.orignal_title ||
-          contentState?.original_name
-        }
-        content={contentState}
-      />
-      <ContentInfo content={contentState} />
-    </PageContainer>
-  );
+  if (Object.keys(contentState).length > 3)
+    return (
+      <PageContainer>
+        <Navbar />
+        {/* <div>asdasdasd</div>
+         */}
+        <Breadcrumb
+          contentTitle={
+            contentState?.title ||
+            contentState?.name ||
+            contentState?.orignal_title ||
+            contentState?.original_name
+          }
+          content={contentState}
+        />
+        <ContentInfo content={contentState} />
+        <Row
+          title={`Similar ${contentType}`}
+          name={`similarWith${contentID}`}
+          fetchURL={similarFetch}
+        />
+      </PageContainer>
+    );
+  return <></>;
 };
 
 export default ContentPage;

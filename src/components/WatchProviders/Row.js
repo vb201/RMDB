@@ -1,12 +1,14 @@
 import React from "react";
-import { useWatchProviderFetch } from "../../hooks/useWatchProviderFetch";
+import API from "../../API-V2";
+import { useMergeContentFetch } from "../../hooks/useMergeContentFetch";
 import RowItems from "../Row/RowItems";
 import Spinner from "../Spinner";
 import { Content } from "./styles";
 
 const WatchProviderRow = ({ id, watchProviderName }) => {
-  const { contentState, loading, error, fetch } = useWatchProviderFetch(
-    id,
+  const { contentState, loading, error, fetch } = useMergeContentFetch(
+    API.fetchMovieFromWatchProvider(id),
+    API.fetchTVFromWatchProvider(id),
     watchProviderName
   );
   // console.log(contentState);

@@ -1,50 +1,44 @@
 import axios from "../API-V2/axios";
 import { useState, useEffect, useCallback } from "react";
 import { checkExistingState } from "../helpers";
-import API from "../API-V2";
 
 const initialState = {
   page: 0,
   results: [],
 };
 
-export const useWatchProviderFetch = (id, WatchProviderName) => {
+export const useMergeContentFetch = (fetchMovie, fetchTV, sessionName) => {
   const [contentState, setContentState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   // Fetch function
-  const fetch = useCallback(
-    async (type) => {
-      try {
-        setError(false);
-        setLoading(true);
-        const movieRequest = await axios.get(
-          API.fetchMovieFromWatchProvider(id)
-        );
-        const TVRequest = await axios.get(API.fetchTVFromWatchProvider(id));
+  const fetch = useCallback(async () => {
+    try {
+      setError(false);
+      setLoading(true);
+      const movieRequest = await axios.get(fetchMovie);
+      const TVRequest = await axios.get(fetchTV);
 
-        // console.log(`movieRequest.data`, movieRequest.data.results);
-        // console.log(`TVRequest.data`, TVRequest.data.results);
+      // console.log(`movieRequest.data`, movieRequest.data.results);
+      // console.log(`TVRequest.data`, TVRequest.data.results);
 
-        const merge = [...movieRequest.data.results, ...TVRequest.data.results];
-        merge.sort((a, b) => (a.popularity < b.popularity ? 1 : -1));
-        setContentState(merge);
-        // console.log(`merge.data`, merge);
+      const merge = [...movieRequest.data.results, ...TVRequest.data.results];
+      merge.sort((a, b) => (a.popularity < b.popularity ? 1 : -1));
+      setContentState(merge);
+      // console.log(`merge.data`, merge);
 
-        // set in session storage
-      } catch (error) {
-        setError(true);
-      }
-      setLoading(false);
-    },
-    [id]
-  );
+      // set in session storage
+    } catch (error) {
+      setError(true);
+    }
+    setLoading(false);
+  }, [fetchMovie, fetchTV]);
 
   // Initial Render and Fetch
   useEffect(() => {
     // // Grabbing from session storage);
-    const sessionState = checkExistingState(WatchProviderName);
+    const sessionState = checkExistingState(sessionName);
 
     if (sessionState) {
       setContentState(sessionState);
@@ -55,11 +49,11 @@ export const useWatchProviderFetch = (id, WatchProviderName) => {
       fetch();
       // sessionStorage.setItem(sessionName, JSON.stringify(contentState));
     }
-  }, [fetch, WatchProviderName]);
+  }, [fetch, sessionName]);
 
   // Write to sessionStorage
   useEffect(() => {
-    sessionStorage.setItem(WatchProviderName, JSON.stringify(contentState));
+    sessionStorage.setItem(sessionName, JSON.stringify(contentState));
   });
 
   return {

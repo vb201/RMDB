@@ -18,7 +18,6 @@ const Thumbnail = ({
   onHoverScale,
   onHoverOpacity,
 }) => {
-  console.table(image);
   return (
     <div>
       {clickable ? (

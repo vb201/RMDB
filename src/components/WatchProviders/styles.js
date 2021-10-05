@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   ${tw`items-center w-full bg-black `};
 `;
 export const Title = styled.div`
-  ${tw`px-5 py-3 text-4xl font-bold text-white sm:px-16 md:px-20`};
+  ${tw`px-5 py-4 text-4xl font-bold text-white sm:px-16 md:px-20`};
 `;
 
 export const ButtonContainer = styled.div`

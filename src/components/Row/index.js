@@ -13,9 +13,7 @@ const Row = ({ title, name, fetchURL }) => {
       {/* Titles */}
       <Title>{title}</Title>
       <ContentWrapper>
-        <Content>
-          <RowItems contents={contentState.results} />
-        </Content>
+        <RowItems contents={contentState.results} />
       </ContentWrapper>
     </Wrapper>
   );

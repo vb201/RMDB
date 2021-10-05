@@ -1,17 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import tw from "twin.macro";
 
 import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../API/config";
 
 export const Wapper = styled.div`
-  ${tw`w-full bg-cover // opacity-20 justify-items-end`};
   background: ${({ backdrop }) =>
     backdrop
       ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)), url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})`
       : "#000"};
-  background-position: center;
-
-  /* padding: 40px 20px; */
+  ${tw`w-full bg-center bg-cover`};
 
   animation: animateMovieInfo 1s;
 
@@ -33,17 +30,7 @@ export const Wapper = styled.div`
 `;
 
 export const Contents = styled.div`
-  ${tw`
-  flex
-  flex-col
-  align-items[flex-start]
-  color[whitesmoke]
-  mx-5
-
-  sm:pt-24 sm:pl-6
-  md:pt-32 md:pl-8
-  lg:pt-52
-  `};
+  ${tw`flex flex-col items-start mx-5 text-white sm:pt-24 sm:pl-6 md:pt-32 md:pl-8 lg:pt-52 `};
   @media (max-width: 640px) {
     padding-top: 72px;
   }
@@ -81,16 +68,15 @@ export const DotsWrapper = styled.div`
   }
 `;
 export const Dots = styled.div`
-  ${tw`
-    w-5 h-5 border-radius[50%] mx-1 my-1 background-color[#f1f1f1]
-  `};
+  ${tw`w-5 h-5 border-radius[50%] mx-1 my-1 bg-white`};
 
   @media (max-width: 400px) {
     ${tw`w-4 h-4 my-1`}
   }
-  /* &.${(props) => props.active} {
-    background: rgb(32, 32, 32);
-  } */
 
-  background: ${({ active }) => (active ? `rgb(107, 107, 107)` : "")};
+  ${(props) =>
+    props.active &&
+    css`
+      ${tw`bg-medGrey`}
+    `}/* background: ${({ active }) => (active ? `rgb(107, 107, 107)` : "")}; */
 `;
