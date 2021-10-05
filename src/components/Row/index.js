@@ -1,12 +1,11 @@
 import React from "react";
 import { useContentFetch } from "../../hooks/useContentFetch";
-import { Content, ContentWrapper, Title, Wrapper } from "./styles";
+import { ContentWrapper, Title, Wrapper } from "./styles";
 import RowItems from "./RowItems";
+import ErrorPage from "../../containers/ErrorPage";
 const Row = ({ title, name, fetchURL }) => {
-  const { contentState, loading, error, fetch } = useContentFetch(
-    fetchURL,
-    name
-  );
+  const { contentState, loading, error } = useContentFetch(fetchURL, name);
+  if (error) return <ErrorPage />;
   if (loading) return <spinner />;
   return (
     <Wrapper>

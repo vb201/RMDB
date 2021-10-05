@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar";
 import Row from "../../components/Row";
 import Spinner from "../../components/Spinner";
 import { useContentFetchWithCredits } from "../../hooks/useContentFetchWithCredits";
+import ErrorPage from "../ErrorPage";
 import { PageContainer } from "./style";
 
 const ContentPage = () => {
@@ -29,6 +30,8 @@ const ContentPage = () => {
     contentID
   );
   console.log(Object.keys(contentState).length > 3);
+
+  if (error) return <ErrorPage />;
   if (loading) return <Spinner />;
 
   if (Object.keys(contentState).length > 3)

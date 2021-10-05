@@ -4,6 +4,7 @@ import { useContentFetch } from "../../hooks/useContentFetch";
 import WatchProviderRow from "./Row";
 import Spinner from "../Spinner";
 import { Button, ButtonContainer, Title, Wrapper } from "./styles";
+import ErrorPage from "../../containers/ErrorPage";
 
 const WatchProviders = () => {
   const { contentState, loading, error } = useContentFetch(
@@ -28,6 +29,8 @@ const WatchProviders = () => {
       }
     }
   }
+
+  if (error) return <ErrorPage/>;
   if (loading) return <Spinner />;
   return (
     <>

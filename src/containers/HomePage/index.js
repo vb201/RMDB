@@ -3,8 +3,6 @@ import Banner from "../../components/Banner";
 import Navbar from "../../components/Navbar";
 import Row from "../../components/Row";
 import SeachBar from "../../components/SearchBar";
-import Spinner from "../../components/Spinner";
-import { useHomeFetch } from "../../hooks/useHomeFetch";
 import { PageContainer } from "./styles";
 
 import API from "../../API-V2/";
@@ -15,7 +13,6 @@ const HomePage = () => {
   // const [content, setContent] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [loading, setLoading] = useState(false);
   // var sliced = [];
   // for (var i = 0; i < 5; i++) sliced[i] = bannerState.results[i];
   // console.log(sliced);
@@ -23,7 +20,6 @@ const HomePage = () => {
   //   Object.entries(bannerState.results).slice(0, 6)
   // )
 
-  if (loading) return <Spinner />;
   return (
     <PageContainer>
       {/* Navbar */}
