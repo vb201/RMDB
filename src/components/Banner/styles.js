@@ -40,10 +40,7 @@ export const Heading = styled.h1`
   ${tw`pb-1 text-3xl font-bold sm:text-4xl md:text-5xl`};
 `;
 
-export const Button = styled.button`
-  ${tw`my-5 py-2 cursor-pointer text-white outline-none border-0 font-bold border-radius[0.2vh] px-8 background-clip[rgba(51,51,51,0.5)]
-  hover:color[black] hover:bg-white hover:transition-all`};
-`;
+
 export const Text = styled.div`
   width: 90%;
   max-width: 560px;

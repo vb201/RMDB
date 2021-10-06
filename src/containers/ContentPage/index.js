@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router";
 import API from "../../API-V2";
 import Breadcrumb from "../../components/Breadcrumb";
+import CastRow from "../../components/Cast/row";
 import ContentInfo from "../../components/ContentInfo";
 import Navbar from "../../components/Navbar";
 import Row from "../../components/Row";
@@ -50,6 +51,7 @@ const ContentPage = () => {
           content={contentState}
         />
         <ContentInfo content={contentState} />
+        <CastRow casts={contentState.cast} />
         <Row
           title={`Similar ${contentType}`}
           name={`similarWith${contentID}`}

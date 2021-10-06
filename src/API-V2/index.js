@@ -80,6 +80,14 @@ const API = {
     const endpoint = `tv/${tvId}/similar?api_key=${API_KEY}`;
     return endpoint;
   },
+  fetchMovieWatchProvider: (movieId) => {
+    const endpoint = `movie/${movieId}/watch/providers?api_key=${API_KEY}`;
+    return endpoint;
+  },
+  fetchTVWatchProvider: (tvId) => {
+    const endpoint = `tv/${tvId}/watch/providers?api_key=${API_KEY}`;
+    return endpoint;
+  },
 };
 
 export default API;

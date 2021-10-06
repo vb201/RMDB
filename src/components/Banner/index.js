@@ -5,16 +5,9 @@ import Spinner from "../Spinner";
 
 import { useContentFetch } from "../../hooks/useContentFetch";
 // import { Banner } from "../../API/API";
-import {
-  Button,
-  Contents,
-  Dots,
-  DotsWrapper,
-  Heading,
-  Text,
-  Wapper,
-} from "./styles";
+import { Contents, Dots, DotsWrapper, Heading, Text, Wapper } from "./styles";
 import { Link } from "react-router-dom";
+import Button from "../Button";
 
 // type TestState = {bannerDataBanner}
 const BannerContainer = () => {
@@ -80,7 +73,7 @@ const BannerContainerChild = ({ bannerData, DataLength }) => {
               : `/tv/${bannerData[currentBanner].id}`
           }
         >
-          <Button>More Info</Button>
+          <Button title="More Info" />
         </Link>
         {/* Truncate OverView */}
 

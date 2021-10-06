@@ -30,7 +30,7 @@ const WatchProviders = () => {
     }
   }
 
-  if (error) return <ErrorPage/>;
+  if (error) return <ErrorPage />;
   if (loading) return <Spinner />;
   return (
     <>
@@ -64,9 +64,7 @@ const WatchProvidersChild = ({ WatchProvidersData }) => {
             <Button
               key={index}
               active
-              // onClick={() =>
-              //   handleButtonClick(index, watchProvider.provider_id)
-              // }
+        
             >
               {watchProvider.provider_name}
             </Button>
