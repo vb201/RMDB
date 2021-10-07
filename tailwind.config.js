@@ -28,6 +28,9 @@ module.exports = {
         black: "#000",
         white: "#fff",
       },
+      animation: {
+        "spin-slow": "spin 2s linear infinite",
+      },
     },
   },
   variants: {

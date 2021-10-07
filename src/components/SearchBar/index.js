@@ -6,8 +6,8 @@ import seachIcon from "../../assets/images/search-icon.svg";
 // Styles
 import { Wrapper, Content } from "./styles";
 
-const SeachBar = ({ setSearchTerm }) => {
-  const [state, setState] = useState("");
+const SeachBar = ({ searchTerm, setSearchTerm }) => {
+  const [state, setState] = useState(searchTerm);
   const initialRender = useRef(true);
 
   useEffect(() => {
@@ -29,7 +29,9 @@ const SeachBar = ({ setSearchTerm }) => {
         <input
           type="text"
           placeholder="Search"
-          onChange={(event) => setState(event.currentTarget.value)}
+          onChange={(event) => {
+            setState(event.currentTarget.value.trimStart());
+          }}
           value={state}
         />
       </Content>

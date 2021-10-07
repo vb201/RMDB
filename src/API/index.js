@@ -2,107 +2,85 @@ import {
   SEARCH_MOVIE_BASE_URL,
   SEARCH_TV_BASE_URL,
   SEARCH_MULTI_BASE_URL,
-  POPULAR_MOVIE_BASE_URL,
-  POPULAR_TV_BASE_URL,
   TRENDING_ALL_WEEK_BASE_URL,
   IN_THEATRES_BASE_URL,
-  API_URL,
+  WATCH_PROVIDER_BASE_URL,
+  MOVIE_FROM_WATCH_PROVIDER_BASE_URL,
+  TV_FROM_WATCH_PROVIDER_BASE_URL,
   API_KEY,
-  REQUEST_TOKEN_URL,
-  LOGIN_URL,
-  SESSION_ID_URL,
 } from "./config";
 
-const defaultConfig = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
+const API = {
+  fetchMovies: (searchTerm, page) => {
+    const endpoint = `${SEARCH_MOVIE_BASE_URL}${searchTerm}&page=${page}`;
+    return endpoint;
   },
-};
+  fetchTVs: (searchTerm, page) => {
+    const endpoint = `${SEARCH_TV_BASE_URL}${searchTerm}&page=${page}`;
 
-const apiSettings = {
-  fetchMovies: async (searchTerm, page) => {
-    const endpoint = searchTerm
-      ? `${SEARCH_MOVIE_BASE_URL}${searchTerm}&page=${page}`
-      : `${POPULAR_MOVIE_BASE_URL}&page=${page}`;
-    return await (await fetch(endpoint)).json();
+    return endpoint;
   },
-  fetchTVs: async (searchTerm, page) => {
-    const endpoint = searchTerm
-      ? `${SEARCH_TV_BASE_URL}${searchTerm}&page=${page}`
-      : `${POPULAR_TV_BASE_URL}&page=${page}`;
-    return await (await fetch(endpoint)).json();
-  },
-  fetchTrendingThisWeek: async (page = 1) => {
+  fetchTrendingThisWeek: (page = 1) => {
     const endpoint = `${TRENDING_ALL_WEEK_BASE_URL}&page=${page}`;
-    return await (await fetch(endpoint)).json();
+    return endpoint;
   },
-  fetchInTheatres: async (page = 1, region = "US") => {
+  fetchInTheatres: (page = 1, region = "IN") => {
     const endpoint = `${IN_THEATRES_BASE_URL}&page=${page}&region=${region}`;
-    return await (await fetch(endpoint)).json();
+    return endpoint;
   },
-
+  fetchWatchProviders: (region = "IN") => {
+    const endpoint = `${WATCH_PROVIDER_BASE_URL}&language=en-US&watch_region=${region}`;
+    return endpoint;
+  },
+  fetchMovieFromWatchProvider: (id, region = "IN") => {
+    const endpoint = `${MOVIE_FROM_WATCH_PROVIDER_BASE_URL}&with_watch_providers=${id}&watch_region=${region}`;
+    return endpoint;
+  },
+  fetchTVFromWatchProvider: (id, region = "IN") => {
+    const endpoint = `${TV_FROM_WATCH_PROVIDER_BASE_URL}&with_watch_providers=${id}&watch_region=${region}`;
+    return endpoint;
+  },
   // Fix
-  fetchAll: async (searchTerm, page) => {
-    const endpoint = searchTerm
-      ? `${SEARCH_MULTI_BASE_URL}${searchTerm}&page=${page}`
-      : `${POPULAR_TV_BASE_URL}&page=${page}`;
-    return await (await fetch(endpoint)).json();
+  fetchAll: (searchTerm, page) => {
+    const endpoint = `${SEARCH_MULTI_BASE_URL}${searchTerm}&page=&${page}`;
+    return endpoint;
   },
-  fetchMovieVideo: async (movieId) => {
-    const endpoint = `${API_URL}movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`;
-    return await (await fetch(endpoint)).json();
+  fetchMovieVideo: (movieId) => {
+    const endpoint = `movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`;
+    return endpoint;
   },
-  fetchMovie: async (movieId) => {
-    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
-    return await (await fetch(endpoint)).json();
+  fetchMovie: (movieId) => {
+    const endpoint = `movie/${movieId}?api_key=${API_KEY}`;
+    return endpoint;
   },
-  fetchCredits: async (movieId) => {
-    const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
-    return await (await fetch(creditsEndpoint)).json();
+  fetchTV: (tvId) => {
+    const endpoint = `tv/${tvId}?api_key=${API_KEY}`;
+    return endpoint;
   },
-  // Bonus material below for login
-  getRequestToken: async () => {
-    const reqToken = await (await fetch(REQUEST_TOKEN_URL)).json();
-    return reqToken.request_token;
+  fetchMovieCredits: (movieId) => {
+    const endpoint = `movie/${movieId}/credits?api_key=${API_KEY}`;
+    return endpoint;
   },
-  authenticate: async (requestToken, username, password) => {
-    const bodyData = {
-      username,
-      password,
-      request_token: requestToken,
-    };
-    // First authenticate the requestToken
-    const data = await (
-      await fetch(LOGIN_URL, {
-        ...defaultConfig,
-        body: JSON.stringify(bodyData),
-      })
-    ).json();
-    // Then get the sessionId with the requestToken
-    if (data.success) {
-      const sessionId = await (
-        await fetch(SESSION_ID_URL, {
-          ...defaultConfig,
-          body: JSON.stringify({ request_token: requestToken }),
-        })
-      ).json();
-      return sessionId;
-    }
+  fetchTVCredits: (tvId) => {
+    const endpoint = `tv/${tvId}/credits?api_key=${API_KEY}`;
+    return endpoint;
   },
-  // Not fixed
-  rateMovie: async (sessionId, movieId, value) => {
-    const endpoint = `${API_URL}movie/${movieId}/rating?api_key=${API_KEY}&session_id=${sessionId}`;
-
-    const rating = await (
-      await fetch(endpoint, {
-        ...defaultConfig,
-        body: JSON.stringify({ value }),
-      })
-    ).json();
-
-    return rating;
+  fetchSimilarMovie: (movieId) => {
+    const endpoint = `movie/${movieId}/similar?api_key=${API_KEY}`;
+    return endpoint;
+  },
+  fetchSimilarTV: (tvId) => {
+    const endpoint = `tv/${tvId}/similar?api_key=${API_KEY}`;
+    return endpoint;
+  },
+  fetchMovieWatchProvider: (movieId) => {
+    const endpoint = `movie/${movieId}/watch/providers?api_key=${API_KEY}`;
+    return endpoint;
+  },
+  fetchTVWatchProvider: (tvId) => {
+    const endpoint = `tv/${tvId}/watch/providers?api_key=${API_KEY}`;
+    return endpoint;
   },
 };
 
-export default apiSettings;
+export default API;

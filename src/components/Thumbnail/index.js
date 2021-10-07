@@ -4,12 +4,6 @@ import { Link } from "react-router-dom";
 // styles
 import { Image } from "./styles";
 
-// type Props = {
-// 	image: string,
-// 	movieId: number,
-// 	clickable: boolean,
-// };
-
 const Thumbnail = ({
   image,
   linkTo,
@@ -19,7 +13,7 @@ const Thumbnail = ({
   onHoverOpacity,
 }) => {
   return (
-    <div>
+    <div className="">
       {clickable ? (
         <Link to={linkTo}>
           <Image src={image} alt="thumbnail" small={small} />

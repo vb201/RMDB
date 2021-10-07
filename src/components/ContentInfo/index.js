@@ -1,12 +1,12 @@
 import React from "react";
 
-import { IMAGE_BASE_URL, BIG_POSTER_SIZE } from "../../API-V2/config";
+import { IMAGE_BASE_URL, BIG_POSTER_SIZE } from "../../API/config";
 import { Content, Text, Wrapper } from "./styles";
 import Thumbnail from "../Thumbnail";
 import Grid from "../Grid";
 import { useTestFetch } from "../../hooks/useTestFetch";
 import { useParams } from "react-router";
-import API from "../../API-V2";
+import API from "../../API";
 import Spinner from "../Spinner";
 import ErrorPage from "../../containers/ErrorPage";
 

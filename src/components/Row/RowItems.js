@@ -1,5 +1,5 @@
 import React from "react";
-import { POSTER_SIZE, IMAGE_BASE_URL } from "../../API-V2/config";
+import { POSTER_SIZE, IMAGE_BASE_URL } from "../../API/config";
 import Thumbnail from "../Thumbnail";
 import { ContentItem } from "./styles";
 

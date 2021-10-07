@@ -1,5 +1,5 @@
 import React from "react";
-import API from "../../API-V2";
+import API from "../../API";
 import ErrorPage from "../../containers/ErrorPage";
 import { useMergeContentFetch } from "../../hooks/useMergeContentFetch";
 import RowItems from "../Row/RowItems";
@@ -19,6 +19,8 @@ const WatchProviderRow = ({ id, watchProviderName }) => {
   return (
     // <div>
     <>
+      {loading && <Spinner />}
+
       {Object.keys(contentState).length > 2 && (
         <Content>
           <RowItems contents={contentState} />

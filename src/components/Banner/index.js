@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import API from "../../API-V2";
+import API from "../../API";
 
 import Spinner from "../Spinner";
 
@@ -7,9 +7,8 @@ import { useContentFetch } from "../../hooks/useContentFetch";
 // import { Banner } from "../../API/API";
 import { Contents, Dots, DotsWrapper, Heading, Text, Wapper } from "./styles";
 import { Link } from "react-router-dom";
-import Button from "../Button";
-
-// type TestState = {bannerDataBanner}
+import ErrorPage from "../../containers/ErrorPage";
+import PrimaryButton from "../Buttons/Primary";
 const BannerContainer = () => {
   const { contentState, loading, error } = useContentFetch(
     API.fetchTrendingThisWeek(),
@@ -18,6 +17,7 @@ const BannerContainer = () => {
   var DataLength = 7;
   var sliced = [];
   for (var i = 0; i < DataLength; i++) sliced[i] = contentState.results[i];
+  if (error) return <ErrorPage />;
   if (loading) return <Spinner />;
   return (
     <>
@@ -73,7 +73,7 @@ const BannerContainerChild = ({ bannerData, DataLength }) => {
               : `/tv/${bannerData[currentBanner].id}`
           }
         >
-          <Button title="More Info" />
+          <PrimaryButton title="More Info" callback={() => {}} />
         </Link>
         {/* Truncate OverView */}
 

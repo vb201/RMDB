@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import tw from "twin.macro";
 
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../API-V2/config";
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../API/config";
 
 export const Wrapper = styled.div`
   background: ${({ backdrop }) =>

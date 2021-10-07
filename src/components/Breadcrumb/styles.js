@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   ${tw`flex w-full pl-5 `}
-  span {
+  div {
     ${tw`pr-3 text-lg text-white md:text-base`}
   }
 `;

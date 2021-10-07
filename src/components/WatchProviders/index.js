@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../../API-V2";
+import API from "../../API";
 import { useContentFetch } from "../../hooks/useContentFetch";
 import WatchProviderRow from "./Row";
 import Spinner from "../Spinner";
@@ -61,11 +61,7 @@ const WatchProvidersChild = ({ WatchProvidersData }) => {
       <ButtonContainer>
         {WatchProvidersData.map((watchProvider, index) =>
           currentWatchProviderIndex === index ? (
-            <Button
-              key={index}
-              active
-        
-            >
+            <Button key={index} active>
               {watchProvider.provider_name}
             </Button>
           ) : (

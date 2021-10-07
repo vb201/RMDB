@@ -1,10 +1,8 @@
+import axios from "../API/axios";
 import { useState, useEffect } from "react";
 
 // Api
-import API, { Banner } from "../API";
-
-// Helpers
-import { checkExistingState } from "../helpers";
+import API from "../API";
 
 const initialState = {
   page: 0,
@@ -13,92 +11,66 @@ const initialState = {
   total_results: 0,
 };
 
-// const initialState = {
-// 	page: 0,
-// 	results: [] as Movie[],
-// 	total_pages: 0,
-// 	total_results: 0,
-// };
 export const useHomeFetch = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [bannerState, setBannerState] = useState(initialState);
-  const [loading, setLoading] = useState(false);
+  const [state, setState] = useState(initialState);
   const [error, setError] = useState(false);
   const [LoadingMore, setLoadingMore] = useState(false);
 
-  const fetch = async (page, searchTerm = "") => {
+  const fetchMovies = async (page, searchTerm) => {
     try {
       setError(false);
-      setLoading(true);
-      // console.log(await API.fetchMovies(searchTerm, page));
+      // setLoading(true);
 
-      const banner = await API.fetchTrendingThisWeek(page);
+      const movieRequest = await axios.get(API.fetchMovies(searchTerm, page));
+      const tvRequest = await axios.get(API.fetchTVs(searchTerm, page));
 
-      // const check = await API.fetchTVs(searchTerm, page);
-      // setTempstate(check);
-      setBannerState((prev) => ({
-        ...banner,
+      const contentResult = [
+        ...movieRequest.data.results,
+        ...tvRequest.data.results,
+      ];
+      contentResult.sort((a, b) => (a.popularity < b.popularity ? 1 : -1));
+      setState((prev) => ({
+        ...movieRequest.data,
         results:
-          page > 1 ? [...prev.results, ...banner.results] : [...banner.results],
+          page > 1 ? [...prev.results, ...contentResult] : [...contentResult],
       }));
-      console.log(banner);
-      // console.log(banner);
     } catch (error) {
       setError(true);
     }
-    setLoading(false);
+    // setLoading(false);
   };
 
+  // // Search
+  // useEffect(() => {
+  //   if (searchTerm) {
+  //     // Set initial state and then fetch from API
+  //     setState(initialState);
+  //     fetchMovies(1, searchTerm);
+  //   }
+  // }, [searchTerm]);
   // Initial Render and Search
+
   useEffect(() => {
     // Check sessionStorage
-    if (!searchTerm) {
-      // console.log("Grabbing from session storage");
-      const sessionState = checkExistingState("homeBannerState");
-
-      if (sessionState) {
-        setBannerState(sessionState);
-        return;
-      }
-    }
+    if (searchTerm === "") return;
     // Set initial state and then fetch from API
-    setBannerState(initialState);
-    fetch(1, searchTerm);
+    fetchMovies(1, searchTerm);
   }, [searchTerm]);
 
   // Load More
   useEffect(() => {
     if (!LoadingMore) return;
 
-    fetch(bannerState.page + 1, searchTerm);
+    fetchMovies(state.page + 1, searchTerm);
     setLoadingMore(false);
-  }, [LoadingMore, searchTerm, bannerState.page]);
-
-  // Write to sessionStorage
-  useEffect(() => {
-    if (!searchTerm) {
-      sessionStorage.setItem("homeBannerState", JSON.stringify(bannerState));
-    }
-  });
+  }, [LoadingMore, searchTerm, state.page]);
 
   return {
-    bannerState,
-    loading,
+    state,
     error,
     searchTerm,
     setSearchTerm,
     setLoadingMore,
   };
 };
-
-// const fetch = async () => {
-//     const request = await axios.get(fetchURL);
-
-//     const { data } = request;
-
-//     console.log(data);
-//     setContent((prev) => ({ ...data }));
-//     console.log(content);
-
-//     return data;
-//   };

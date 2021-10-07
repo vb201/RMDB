@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 // Styles
 import { Wrapper, Content } from "./styles";
 
-const Breadcrumb = ({ contentTitle }) => {
+const Breadcrumb = ({ contentTitle, onClickHome }) => {
   return (
     <Wrapper>
       <Content>
         <Link to="/">
-          <span>Home</span>
+          <div onClick={onClickHome}>Home</div>
         </Link>
-        <span>|</span>
-        <span>{contentTitle}</span>
+        <div>|</div>
+        <div>{contentTitle}</div>
       </Content>
     </Wrapper>
   );
