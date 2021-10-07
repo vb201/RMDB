@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   background: ${({ backdrop }) =>
     backdrop ? `url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})` : "#000"};
 
-  ${tw`w-full px-5 py-10 bg-center bg-cover`}
+  ${tw`w-full px-5 py-10 bg-center bg-cover `}
 
   animation: animateMovieInfo 1s;
   @keyframes animateMovieInfo {

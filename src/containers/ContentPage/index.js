@@ -14,23 +14,25 @@ import { PageContainer } from "./style";
 const ContentPage = () => {
   const { contentType, contentID } = useParams();
 
-  var contentFetch, creditFetch, similarFetch;
+  var contentFetch, creditFetch, similarFetch, trailerFetch;
   if (contentType === "movie") {
     contentFetch = API.fetchMovie(contentID);
     creditFetch = API.fetchMovieCredits(contentID);
     similarFetch = API.fetchSimilarMovie(contentID);
+    trailerFetch = API.fetchMovieVideo(contentID);
   } else if (contentType === "tv") {
     contentFetch = API.fetchTV(contentID);
     creditFetch = API.fetchTVCredits(contentID);
     similarFetch = API.fetchSimilarTV(contentID);
+    trailerFetch = API.fetchTVVideo(contentID);
   }
 
   const { contentState, loading, error } = useContentFetchWithCredits(
     contentFetch,
     creditFetch,
+    trailerFetch,
     contentID
   );
-  console.log(Object.keys(contentState).length > 3);
 
   if (error) return <ErrorPage />;
   if (loading) return <Spinner />;

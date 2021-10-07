@@ -26,6 +26,7 @@ export const Content = styled.div`
     bg-medGrey
     rounded-2xl
     mr-auto
+    // cursor-pointer
     color[white]
     // placeholder-white::placeholder
   `}

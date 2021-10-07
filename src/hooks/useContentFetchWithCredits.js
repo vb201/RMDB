@@ -10,6 +10,7 @@ const initialState = {
 export const useContentFetchWithCredits = (
   fetchURL,
   fetchCredit,
+  fetchTrailer,
   sessionName
 ) => {
   const [contentState, setContentState] = useState(initialState);
@@ -23,6 +24,7 @@ export const useContentFetchWithCredits = (
       setLoading(true);
       const contentRequest = await axios.get(fetchURL);
       const creditRequest = await axios.get(fetchCredit);
+      const trailerRequest = await axios.get(fetchTrailer);
       // console.log(request.data);
 
       const directors = creditRequest.data.crew.filter(
@@ -31,19 +33,30 @@ export const useContentFetchWithCredits = (
       const producers = creditRequest.data.crew.filter(
         (member) => member.job === "Producer"
       );
+
+      let trailer = trailerRequest.data.results.filter(
+        (video) => video.type === "Trailer"
+      );
+      if (!trailer) {
+        trailer = trailerRequest.data.results.filter(
+          (video) => video.type === "Teaser"
+        );
+      }
       setContentState({
         ...contentRequest.data,
         cast: creditRequest.data.cast,
         directors,
         producers,
+        trailer: trailer,
       });
 
+      // console.log(`contentState`, contentState);
       // set in session storage
     } catch (error) {
       setError(true);
     }
     setLoading(false);
-  }, [fetchCredit, fetchURL]);
+  }, [fetchCredit, fetchTrailer, fetchURL]);
 
   // Initial Render and Fetch
   useEffect(() => {

@@ -7,7 +7,12 @@ const initialState = {
   results: [],
 };
 
-export const useMergeContentFetch = (fetchMovie, fetchTV, sessionName) => {
+export const useMergeContentFetch = (
+  fetchMovie,
+  fetchTV,
+
+  sessionName
+) => {
   const [contentState, setContentState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -20,15 +25,10 @@ export const useMergeContentFetch = (fetchMovie, fetchTV, sessionName) => {
       const movieRequest = await axios.get(fetchMovie);
       const TVRequest = await axios.get(fetchTV);
 
-      // console.log(`movieRequest.data`, movieRequest.data.results);
-      // console.log(`TVRequest.data`, TVRequest.data.results);
-
       const merge = [...movieRequest.data.results, ...TVRequest.data.results];
       merge.sort((a, b) => (a.popularity < b.popularity ? 1 : -1));
-      setContentState(merge);
-      // console.log(`merge.data`, merge);
 
-      // set in session storage
+      setContentState(merge);
     } catch (error) {
       setError(true);
     }

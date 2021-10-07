@@ -18,8 +18,7 @@ export const useTestFetch = (fetchURL, sessionName) => {
       setError(false);
       setLoading(true);
       const request = await axios.get(fetchURL);
-      console.log(request.data);
-
+      // console.log(request.data);
       setContentState(request.data);
 
       // set in session storage

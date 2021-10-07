@@ -49,6 +49,10 @@ const API = {
     const endpoint = `movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`;
     return endpoint;
   },
+  fetchTVVideo: (tvId) => {
+    const endpoint = `tv/${tvId}/videos?api_key=${API_KEY}&language=en-US`;
+    return endpoint;
+  },
   fetchMovie: (movieId) => {
     const endpoint = `movie/${movieId}?api_key=${API_KEY}`;
     return endpoint;
