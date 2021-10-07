@@ -26,7 +26,6 @@ const HomePage = () => {
     <PageContainer>
       {/* Navbar */}
       <Navbar>
-        <div className="text-white"> {searchTerm}</div>
         <SeachBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </Navbar>
 
