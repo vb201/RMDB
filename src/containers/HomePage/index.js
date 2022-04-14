@@ -35,6 +35,12 @@ const HomePage = () => {
           <Banner />
 
           <Row
+            title="Trending This Week"
+            name="TrendingThisWeek"
+            fetchURL={API.fetchTrendingThisWeek()}
+          />
+
+          <Row
             title="In Theatres"
             name="InTheatres"
             fetchURL={API.fetchInTheatres()}
