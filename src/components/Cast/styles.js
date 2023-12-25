@@ -5,6 +5,8 @@ export const Wrapper = styled.div`
   ${tw`text-white bg-black`}
 `;
 export const CastWrapper = styled.div`
+  min-height: 350px;
+  min-width: 200px;
   ${tw``};
 `;
 

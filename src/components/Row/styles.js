@@ -10,6 +10,8 @@ export const Title = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
+  max-height: 350px;
+  min-width: 200px;
   ${tw`flex p-3 overflow-x-scroll md:p-4 lg:p-5`};
 `;
 

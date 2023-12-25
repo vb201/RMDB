@@ -1,9 +1,6 @@
 // Configuration for TMDB API
 // Read more about the API here: https://developers.themoviedb.org/
 
-// test
-// https://api.themoviedb.org/3/movie/popular?api_key=83e2472a3e938a1fbecf4a953c538d62&language=en-US&page=
-// https://api.themoviedb.org/3/movie/now_playing?api_key=&83e2472a3e938a1fbecf4a953c538d62&page=1&region=US
 
 const API_URL = "https://api.themoviedb.org/3/";
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
@@ -39,9 +36,6 @@ const BACKDROP_SIZE = "original";
 // w92, w154, w185, w342, w500, w780, original
 const POSTER_SIZE = "w342";
 const BIG_POSTER_SIZE = "w500";
-
-// http://image.tmdb.org/t/p/w1280//gFZriCkpJYsApPZEF3jhxL4yLzG.jpg
-// url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop})
 
 export {
   SEARCH_MOVIE_BASE_URL,

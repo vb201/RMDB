@@ -60,7 +60,6 @@ const HomePage = () => {
                 <Grid>
                   {state.results.map((content) => (
                     <>
-                      {console.log(`content`, content)}
                       <Thumbnail
                         key={content.id}
                         clickable={true}

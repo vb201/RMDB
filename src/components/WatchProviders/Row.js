@@ -4,7 +4,7 @@ import ErrorPage from "../../containers/ErrorPage";
 import { useMergeContentFetch } from "../../hooks/useMergeContentFetch";
 import RowItems from "../Row/RowItems";
 import Spinner from "../Spinner";
-import { Content } from "./styles";
+import { Content, ContentWrapper } from "./styles";
 
 const WatchProviderRow = ({ id, watchProviderName }) => {
   const { contentState, loading, error } = useMergeContentFetch(
@@ -18,7 +18,7 @@ const WatchProviderRow = ({ id, watchProviderName }) => {
   if (loading) return <Spinner />;
   return (
     // <div>
-    <>
+    <ContentWrapper>
       {loading && <Spinner />}
 
       {Object.keys(contentState).length > 2 && (
@@ -26,7 +26,7 @@ const WatchProviderRow = ({ id, watchProviderName }) => {
           <RowItems contents={contentState} />
         </Content>
       )}
-    </>
+    </ContentWrapper>
     // </div>
   );
 };

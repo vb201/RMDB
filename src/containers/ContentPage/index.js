@@ -6,10 +6,10 @@ import Cast from "../../components/Cast";
 import ContentInfo from "../../components/ContentInfo";
 import Navbar from "../../components/Navbar";
 import Row from "../../components/Row";
-import Spinner from "../../components/Spinner";
 import { useContentFetchWithCredits } from "../../hooks/useContentFetchWithCredits";
 import ErrorPage from "../ErrorPage";
 import { PageContainer } from "./style";
+import FullPageLoader from "../../components/FullPageLoader";
 
 const ContentPage = () => {
   const { contentType, contentID } = useParams();
@@ -35,8 +35,8 @@ const ContentPage = () => {
   );
 
   if (error) return <ErrorPage />;
-  if (loading) return <Spinner />;
-
+  if (loading) return <FullPageLoader isLoading={loading} />;
+  
   if (Object.keys(contentState).length > 3)
     return (
       <PageContainer>

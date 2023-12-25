@@ -9,9 +9,10 @@ export const Title = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  ${tw`m-1 `};
+${tw`flex flex-row space-x-4 m-1 overflow-x-auto overflow-y-hidden w-full`}
 `;
 export const Button = styled.button`
+  min-width: max-content;
   ${tw`my-3 py-1 cursor-pointer  outline-none border-0 font-bold border-radius[0.2vh] px-4 
   hover:text-black hover:bg-white hover:transition-all`};
 
@@ -20,6 +21,12 @@ export const Button = styled.button`
   color: ${({ active }) => (active ? `rgb(0, 0, 0)` : `rgb(255, 255, 255)`)};
   background: ${({ active }) =>
     active ? `rgb(255, 255, 255)` : `rgb(0, 0, 0)`};
+`;
+
+export const ContentWrapper = styled.div`
+  min-height: 350px;
+  min-width: 200px;
+  ${tw`flex p-3 overflow-x-scroll md:p-4 lg:p-5`};
 `;
 
 export const Content = styled.div`
